@@ -1,0 +1,3 @@
+[submodule "torchneuromorphic"]
+	path = torchneuromorphic
+	url = git@github.com:fightingnoble/torchneuromorphic.git

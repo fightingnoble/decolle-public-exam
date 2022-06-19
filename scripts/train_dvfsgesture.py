@@ -12,8 +12,10 @@
 import os,sys
 os.chdir(sys.path[0])
 sys.path.insert(0,'..')
-import torchneuromorphic.torchneuromorphic.nmnist.nmnist_dataloaders as dataset
-from decolle.lenet_decolle_model import LenetDECOLLE, DECOLLELoss, LIFLayerVariableTau, LIFLayer
+# import torchneuromorphic.nmnist.nmnist_dataloaders as dataset
+import torchneuromorphic.torchneuromorphic.dvs_gestures.dvsgestures_dataloaders as dataset
+from decolle.base_model import DECOLLELoss, LIFLayerVariableTau, LIFLayer
+from decolle.dvs_decolle_model import DVSDECOLLE
 from decolle.utils import parse_args, train, test, accuracy, save_checkpoint, load_model_from_checkpoint, prepare_experiment, write_stats, cross_entropy_one_hot
 import datetime, os, socket, tqdm
 import numpy as np
@@ -37,6 +39,8 @@ try:
 except AttributeError:
     create_data = dataset.create_dataloader
 
+
+
 verbose = args.verbose
 
 ## Load Data
@@ -59,7 +63,7 @@ if 'dropout' not in params.keys():
     params['dropout'] = [.5]
 
 ## Create Model, Optimizer and Loss
-net = LenetDECOLLE( out_channels=params['out_channels'],
+net = DVSDECOLLE( out_channels=params['out_channels'],
                     Nhid=params['Nhid'],
                     Mhid=params['Mhid'],
                     kernel_size=params['kernel_size'],

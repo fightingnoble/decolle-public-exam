@@ -84,3 +84,5 @@ dcll.egg-info/
 .pydevproject
 runs2/
 runs_args
+
+.vscode

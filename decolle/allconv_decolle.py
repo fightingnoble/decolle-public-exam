@@ -116,11 +116,11 @@ class AllConvDECOLLE(DECOLLEBase):
 
 def get_data_generator_function(dataset):
     if dataset == 'dvs_gesture':
-        from datasets.load_dvsgestures_sparse import create_data
-    elif dataset == 'massiset':
-        from datasets.load_massiset import create_data
+        import torchneuromorphic.torchneuromorphic.dvs_gestures.dvsgestures_dataloaders as dvsgestures_dataset
+        create_data = dvsgestures_dataset.create_dataloader
     elif dataset == 'nmnist':
-        from datasets.load_dvsmnist import create_data
+        import torchneuromorphic.torchneuromorphic.nmnist.nmnist_dataloaders as dataset_mnist
+        create_data = dataset_mnist.create_datasets
     else:
         raise ValueError('Please provide a valid entry for dataset. Possible choices are:\ndvs_gesture\nmassiset')
     return create_data
